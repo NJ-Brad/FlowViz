@@ -14,6 +14,8 @@ namespace FlowViz.LpeTypes
             if (flow == null)
                 return rtnVal;
 
+            const bool createDefaultConnection = false;
+
             if (flow.items != null)
             {
                 foreach (Item itmFlow in flow.items)
@@ -35,7 +37,7 @@ namespace FlowViz.LpeTypes
                         }
                     }
 
-                    if ((previousUnconditional != null) && (previousUnconditional != previousItem))
+                    if (createDefaultConnection && (previousUnconditional != null) && (previousUnconditional != previousItem))
                     {
                         rtnVal.Relationships.Add(new FlowRelationship { From = Utils.VOD(previousUnconditional.id), To = Utils.VOD(itmFlow.id), Label = "Otherwise" });
                     }
